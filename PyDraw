@@ -1,3 +1,6 @@
+print("""Move using the arrow keys.
+Press space to draw.""")
+
 from tkinter import *
 
 window = Tk()
