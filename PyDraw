@@ -1,2 +1,1 @@
 
-area.bind_all("<Key>", control)
