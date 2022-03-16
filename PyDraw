@@ -20,6 +20,9 @@ pen_x = 0
 pen_y = 0
 color = 1
 
+block = toolkit.create_rectangle(0,0,200,70, fill="#F0F0F0", outline="#F0F0F0")
+toolkit.move(block, 500, 0)
+
 black = toolkit.create_rectangle(-15,-15,15,15, fill="#000000")
 toolkit.move(black, 25+40, 25)
 white = toolkit.create_rectangle(-15,-15,15,15, fill="#FFFFFF")
@@ -67,6 +70,10 @@ toolkit.create_text(25+7*40, 58, text="6", fill="#000000")
 toolkit.create_text(25+8*40, 58, text="7", fill="#000000")
 toolkit.create_text(25+9*40, 58, text="8", fill="#000000")
 toolkit.create_text(25+10*40, 58, text="9", fill="#000000")
+
+instructions = toolkit.create_text(central_x+215, 35, text="""Move using the arrow keys
+
+     Press "space" to draw""", fill="#000000")
 
 def control(event):
     
@@ -235,5 +242,5 @@ def control(event):
         area.move(pen, central_x + pen_x, central_y + pen_y)
 
 area.bind_all("<Key>", control)
-
+    
 root.mainloop()
