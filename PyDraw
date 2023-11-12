@@ -1,1 +1,299 @@
+from tkinter import *
 
+window = Tk()
+window.title("PyDraw")
+window.config(bg="#F0F0F0")
+
+area_height = 451
+area_width = 802.5
+central_x = area_width/2
+central_y = area_height/2
+
+palette = Canvas(window, width=area_width, height=70, bg="#F0F0F0") 
+palette.pack()
+line = Canvas(window, width=area_width, height=1, bg="#000000")
+line.pack()
+area = Canvas(window, width=area_width, height=area_height, bg="#FFFFFF")
+area.pack()
+
+pen = area.create_rectangle(-3.5,-3.5,6.5,6.5, fill="#000000")
+area.move(pen, central_x, central_y)
+pen_x = 0
+pen_y = 0
+color = 1
+
+black = palette.create_rectangle(-15,-15,15,15, fill="#000000")
+palette.move(black, 25+40, 24)
+white = palette.create_rectangle(-15,-15,15,15, fill="#FFFFFF")
+palette.move(white, 25+2*40, 24)
+red = palette.create_rectangle(-15,-15,15,15, fill="#FF0000")
+palette.move(red, 25+4*40, 24)
+orange = palette.create_rectangle(-15,-15,15,15, fill="#FF8000")
+palette.move(orange, 25+5*40, 24)
+yellow = palette.create_rectangle(-15,-15,15,15, fill="#FFFF00")
+palette.move(yellow, 25+6*40, 24)
+green = palette.create_rectangle(-15,-15,15,15, fill="#00FF00")
+palette.move(green, 25+7*40, 24)
+cyan = palette.create_rectangle(-15,-15,15,15, fill="#00FFFF")
+palette.move(cyan, 25+8*40, 24)
+blue = palette.create_rectangle(-15,-15,15,15, fill="#0080FF")
+palette.move(blue, 25+9*40, 24)
+purple = palette.create_rectangle(-15,-15,15,15, fill="#8000FF")
+palette.move(purple, 25+10*40, 24)
+
+effect_1 = palette.create_rectangle(-20,-20,20,20, outline="#000000")
+palette.move(effect_1, 25+40, 24)
+effect_2 = palette.create_rectangle(-20,-20,20,20, outline="#000000")
+palette.move(effect_2, 25+2*40, 24)
+effect_3 = palette.create_rectangle(-20,-20,20,20, outline="#000000")
+palette.move(effect_3, 25+4*40, 24)
+effect_4 = palette.create_rectangle(-20,-20,20,20, outline="#000000")
+palette.move(effect_4, 25+5*40, 24)
+effect_5 = palette.create_rectangle(-20,-20,20,20, outline="#000000")
+palette.move(effect_5, 25+6*40, 24)
+effect_6 = palette.create_rectangle(-20,-20,20,20, outline="#000000")
+palette.move(effect_6, 25+7*40, 24)
+effect_7 = palette.create_rectangle(-20,-20,20,20, outline="#000000")
+palette.move(effect_7, 25+8*40, 24)
+effect_8 = palette.create_rectangle(-20,-20,20,20, outline="#000000")
+palette.move(effect_8, 25+9*40, 24)
+effect_9 = palette.create_rectangle(-20,-20,20,20, outline="#000000")
+palette.move(effect_9, 25+10*40, 24)
+
+palette.create_text(25+40, 58, text="1", fill="#000000")
+palette.create_text(25+2*40, 58, text="2", fill="#000000")
+palette.create_text(25+4*40, 58, text="3", fill="#000000")
+palette.create_text(25+5*40, 58, text="4", fill="#000000")
+palette.create_text(25+6*40, 58, text="5", fill="#000000")
+palette.create_text(25+7*40, 58, text="6", fill="#000000")
+palette.create_text(25+8*40, 58, text="7", fill="#000000")
+palette.create_text(25+9*40, 58, text="8", fill="#000000")
+palette.create_text(25+10*40, 58, text="9", fill="#000000")
+
+instructions = palette.create_text(central_x+215, 37, text="""Move using the arrow keys
+
+     Press "space" to draw""", fill="#000000")
+
+if color == 1:
+    area.itemconfig(pen, fill="#000000", outline="#000000")
+    palette.itemconfig(effect_1, state=NORMAL)
+else:
+    palette.itemconfig(effect_1, state=HIDDEN)
+    
+if color == 2:
+    area.itemconfig(pen, fill="#FFFFFF", outline="#FFFFFF")
+    palette.itemconfig(effect_2, state=NORMAL)
+else:
+    palette.itemconfig(effect_2, state=HIDDEN)
+    
+if color == 3:
+    area.itemconfig(pen, fill="#FF0000", outline="#FF0000")
+    palette.itemconfig(effect_3, state=NORMAL)
+else:
+    palette.itemconfig(effect_3, state=HIDDEN)
+
+if color == 4:
+    area.itemconfig(pen, fill="#FF8000", outline="#FF8000")
+    palette.itemconfig(effect_4, state=NORMAL)
+else:
+    palette.itemconfig(effect_4, state=HIDDEN)
+
+if color == 5:
+    area.itemconfig(pen, fill="#FFFF00", outline="#FFFF00")
+    palette.itemconfig(effect_5, state=NORMAL)
+else:
+    palette.itemconfig(effect_5, state=HIDDEN)
+
+if color == 6:
+    area.itemconfig(pen, fill="#00FF00", outline="#00FF00")
+    palette.itemconfig(effect_6, state=NORMAL)
+else:
+    palette.itemconfig(effect_6, state=HIDDEN)
+
+if color == 7:
+    area.itemconfig(pen, fill="#00FFFF", outline="#00FFFF")
+    palette.itemconfig(effect_7, state=NORMAL)
+else:
+    palette.itemconfig(effect_7, state=HIDDEN)
+
+if color == 8:
+    area.itemconfig(pen, fill="#0080FF", outline="#0080FF")
+    palette.itemconfig(effect_8, state=NORMAL)
+else:
+    palette.itemconfig(effect_8, state=HIDDEN)
+
+if color == 9:
+    area.itemconfig(pen, fill="#8000FF", outline="#8000FF")
+    palette.itemconfig(effect_9, state=NORMAL)
+else:
+    palette.itemconfig(effect_9, state=HIDDEN)
+
+def control(event):
+    
+    global pen
+    global color
+    global pen_x
+    global pen_y
+    
+    if event.keysym == "1":
+        area.itemconfig(pen, fill="#000000", outline="#000000")
+        palette.itemconfig(effect_1, state=NORMAL)
+        palette.itemconfig(effect_2, state=HIDDEN)
+        palette.itemconfig(effect_3, state=HIDDEN)
+        palette.itemconfig(effect_4, state=HIDDEN)
+        palette.itemconfig(effect_5, state=HIDDEN)
+        palette.itemconfig(effect_6, state=HIDDEN)
+        palette.itemconfig(effect_7, state=HIDDEN)
+        palette.itemconfig(effect_8, state=HIDDEN)
+        palette.itemconfig(effect_9, state=HIDDEN)
+        color = 1 
+
+    if event.keysym == "2":
+        area.itemconfig(pen, fill="#FFFFFF", outline="#FFFFFF")
+        palette.itemconfig(effect_1, state=HIDDEN)
+        palette.itemconfig(effect_2, state=NORMAL)
+        palette.itemconfig(effect_3, state=HIDDEN)
+        palette.itemconfig(effect_4, state=HIDDEN)
+        palette.itemconfig(effect_5, state=HIDDEN)
+        palette.itemconfig(effect_6, state=HIDDEN)
+        palette.itemconfig(effect_7, state=HIDDEN)
+        palette.itemconfig(effect_8, state=HIDDEN)
+        palette.itemconfig(effect_9, state=HIDDEN)
+        color = 2
+
+    if event.keysym == "3":
+        area.itemconfig(pen, fill="#FF0000", outline="#FF0000")
+        palette.itemconfig(effect_1, state=HIDDEN)
+        palette.itemconfig(effect_2, state=HIDDEN)
+        palette.itemconfig(effect_3, state=NORMAL)
+        palette.itemconfig(effect_4, state=HIDDEN)
+        palette.itemconfig(effect_5, state=HIDDEN)
+        palette.itemconfig(effect_6, state=HIDDEN)
+        palette.itemconfig(effect_7, state=HIDDEN)
+        palette.itemconfig(effect_8, state=HIDDEN)
+        palette.itemconfig(effect_9, state=HIDDEN)
+        color = 3
+
+    if event.keysym == "4":
+        area.itemconfig(pen, fill="#FF8000", outline="#FF8000")
+        palette.itemconfig(effect_1, state=HIDDEN)
+        palette.itemconfig(effect_2, state=HIDDEN)
+        palette.itemconfig(effect_3, state=HIDDEN)
+        palette.itemconfig(effect_4, state=NORMAL)
+        palette.itemconfig(effect_5, state=HIDDEN)
+        palette.itemconfig(effect_6, state=HIDDEN)
+        palette.itemconfig(effect_7, state=HIDDEN)
+        palette.itemconfig(effect_8, state=HIDDEN)
+        palette.itemconfig(effect_9, state=HIDDEN)
+        color = 4
+
+    if event.keysym == "5":
+        area.itemconfig(pen, fill="#FFFF00", outline="#FFFF00")
+        palette.itemconfig(effect_1, state=HIDDEN)
+        palette.itemconfig(effect_2, state=HIDDEN)
+        palette.itemconfig(effect_3, state=HIDDEN)
+        palette.itemconfig(effect_4, state=HIDDEN)
+        palette.itemconfig(effect_5, state=NORMAL)
+        palette.itemconfig(effect_6, state=HIDDEN)
+        palette.itemconfig(effect_7, state=HIDDEN)
+        palette.itemconfig(effect_8, state=HIDDEN)
+        palette.itemconfig(effect_9, state=HIDDEN)
+        color = 5
+
+    if event.keysym == "6":
+        area.itemconfig(pen, fill="#00FF00", outline="#00FF00")
+        palette.itemconfig(effect_1, state=HIDDEN)
+        palette.itemconfig(effect_2, state=HIDDEN)
+        palette.itemconfig(effect_3, state=HIDDEN)
+        palette.itemconfig(effect_4, state=HIDDEN)
+        palette.itemconfig(effect_5, state=HIDDEN)
+        palette.itemconfig(effect_6, state=NORMAL)
+        palette.itemconfig(effect_7, state=HIDDEN)
+        palette.itemconfig(effect_8, state=HIDDEN)
+        palette.itemconfig(effect_9, state=HIDDEN)
+        color = 6
+
+    if event.keysym == "7":
+        area.itemconfig(pen, fill="#00FFFF", outline="#00FFFF")
+        palette.itemconfig(effect_1, state=HIDDEN)
+        palette.itemconfig(effect_2, state=HIDDEN)
+        palette.itemconfig(effect_3, state=HIDDEN)
+        palette.itemconfig(effect_4, state=HIDDEN)
+        palette.itemconfig(effect_5, state=HIDDEN)
+        palette.itemconfig(effect_6, state=HIDDEN)
+        palette.itemconfig(effect_7, state=NORMAL)
+        palette.itemconfig(effect_8, state=HIDDEN)
+        palette.itemconfig(effect_9, state=HIDDEN)
+        color = 7
+
+    if event.keysym == "8":
+        area.itemconfig(pen, fill="#0080FF", outline="#0080FF")
+        palette.itemconfig(effect_1, state=HIDDEN)
+        palette.itemconfig(effect_2, state=HIDDEN)
+        palette.itemconfig(effect_3, state=HIDDEN)
+        palette.itemconfig(effect_4, state=HIDDEN)
+        palette.itemconfig(effect_5, state=HIDDEN)
+        palette.itemconfig(effect_6, state=HIDDEN)
+        palette.itemconfig(effect_7, state=HIDDEN)
+        palette.itemconfig(effect_8, state=NORMAL)
+        palette.itemconfig(effect_9, state=HIDDEN)
+        color = 8
+
+    if event.keysym == "9":
+        area.itemconfig(pen, fill="#8000FF", outline="#8000FF")
+        palette.itemconfig(effect_1, state=HIDDEN)
+        palette.itemconfig(effect_2, state=HIDDEN)
+        palette.itemconfig(effect_3, state=HIDDEN)
+        palette.itemconfig(effect_4, state=HIDDEN)
+        palette.itemconfig(effect_5, state=HIDDEN)
+        palette.itemconfig(effect_6, state=HIDDEN)
+        palette.itemconfig(effect_7, state=HIDDEN)
+        palette.itemconfig(effect_8, state=HIDDEN)
+        palette.itemconfig(effect_9, state=NORMAL)
+        color = 9
+
+    if event.keysym == "Up":
+        if not pen_y < -198-11:
+            area.move(pen, 0, -11)
+            pen_y = pen_y-11
+
+    if event.keysym == "Down":
+        if not pen_y > 198+11:
+            area.move(pen, 0, 11)
+            pen_y = pen_y+11
+
+    if event.keysym == "Left":
+        if not pen_x < -374-11:
+            area.move(pen, -11, 0)
+            pen_x = pen_x-11
+
+    if event.keysym == "Right":
+        if not pen_x > 374+11:
+            area.move(pen, 11, 0)
+            pen_x = pen_x+11
+
+    if event.keysym == "space":
+        if color == 1:
+            pen = area.create_rectangle(-3.5,-3.5,6.5,6.5, fill="#000000", outline="#000000")
+        if color == 2:
+            pen = area.create_rectangle(-3.5,-3.5,6.5,6.5, fill="#FFFFFF", outline="#FFFFFF")
+        if color == 3:
+            pen = area.create_rectangle(-3.5,-3.5,6.5,6.5, fill="#FF0000", outline="#FF0000")
+        if color == 4:
+            pen = area.create_rectangle(-3.5,-3.5,6.5,6.5, fill="#FF8000", outline="#FF8000")
+        if color == 5:
+            pen = area.create_rectangle(-3.5,-3.5,6.5,6.5, fill="#FFFF00", outline="#FFFF00")
+        if color == 6:
+            pen = area.create_rectangle(-3.5,-3.5,6.5,6.5, fill="#00FF00", outline="#00FF00")
+        if color == 7:
+            pen = area.create_rectangle(-3.5,-3.5,6.5,6.5, fill="#00FFFF", outline="#00FFFF")
+        if color == 8:
+            pen = area.create_rectangle(-3.5,-3.5,6.5,6.5, fill="#0080FF", outline="#0080FF")
+        if color == 9:
+            pen = area.create_rectangle(-3.5,-3.5,6.5,6.5, fill="#8000FF", outline="#8000FF")
+
+        area.move(pen, central_x + pen_x, central_y + pen_y)
+
+area.bind_all("<Key>", control)
+
+window.mainloop()
